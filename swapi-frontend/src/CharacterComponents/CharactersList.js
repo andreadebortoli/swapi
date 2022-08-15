@@ -11,18 +11,18 @@ function getId(url) {
 export default function CharactersList ({characters}){
     return (
       <>
-      {/* <h5>{total}</h5> */}
+      
       
         <div className="charactersList">
           {characters.map(c => (
-              <div className="card" key={c.url}>
-                  <img src= {`${imgURL + getId(c.url)}.jpg`} alt="character"/>
-                  <div className ="cardInfo">
-                    <Link className="details" to={`/CharacterDetails/${getId(c.url)}`}>
-                      <h4><b>{c.name}</b></h4>
+                    <Link className="details" to={`/Character/${getId(c.url)}`} key={c.url}>
+                    <div className="card" >
+                        <img src= {`${imgURL + getId(c.url)}.jpg`} alt="character"/>
+                        <div className ="cardInfo">
+                            <h4><b>{c.name}</b></h4>
+                        </div>
+                    </div>
                     </ Link>
-                  </div>
-              </div>
           ))}
         </div>
       

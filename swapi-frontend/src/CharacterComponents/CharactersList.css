@@ -1,4 +1,5 @@
 .charactersList {
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -8,8 +9,8 @@
     background-color: white;
     border-radius: 10px;
     transition: 0.2s;
-    width: 12%;
-    margin: 50px;
+    width: 60%;
+    margin: 30px;
 
   }
   
@@ -27,5 +28,7 @@
   }
 
 .details {
+  color: black;
+  width: 20%;
   text-decoration: none;
 }

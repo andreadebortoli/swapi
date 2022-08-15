@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useParams} from "react-router-dom";
-import './CharactersList.css';
+import './CharacterDetails.css';
 
 const url = "https://swapi.dev/api/people/";
 const imgURL = 'https://starwars-visualguide.com/assets/img/characters/'
@@ -11,8 +11,6 @@ function getId(urlD) {
 
 function CharacterDetail (){
   
-  // console.log(props)
-
   const [character, setCharacter] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,43 +19,62 @@ function CharacterDetail (){
 
 const getCharacterDetails = async () => {
 
-
-// console.log(id)
-
-  try {
-    const response = await fetch(urlDetails);
-    if (!response.ok) {
-      throw new Error(
-        `This is an HTTP error: The status is ${response.status}`
-      );
+  let data = sessionStorage.getItem(`id_${id}`);
+    if(data === null || data === '[]'){
+      try {
+        console.log("from api")
+        const response = await fetch(urlDetails);
+        if (!response.ok) {
+          throw new Error(
+            `This is an HTTP error: The status is ${response.status}`
+          );
+        }
+        let actualData = await response.json();
+        console.log(actualData)
+        setCharacter(actualData);
+    
+        sessionStorage.setItem(`id_${id}`, JSON.stringify(actualData));
+    
+        
+        setError(null);
+      } catch(err) {
+        setError(err.message);
+        setCharacter(null);
+      } finally {
+        setLoading(false);
+      }  
+    }else{
+      console.log("from session")
+      let sessionCharacter = JSON.parse(data)
+      setLoading(true)
+      setCharacter(sessionCharacter);
+      setLoading(false)
     }
-    let actualData = await response.json();
-    console.log(actualData)
-    setCharacter(actualData);
-    setError(null);
-  } catch(err) {
-    setError(err.message);
-    setCharacter(null);
-  } finally {
-    setLoading(false);
-  }  
+
+  
 }
 
 useEffect(() => {
   getCharacterDetails()
+
 }, [])
 
+if(loading) return "Loading..."
 
-    // let { id } = useParams();
   return (
-    <div className="characteDetails">
-              <div className="card" key={character.url}>
-                  {/* <img src= {`${imgURL + getId(character.url)}.jpg`} alt="character"/> */}
-                  <div className ="cardInfo">
-                      <h4><b>{character.name}</b></h4>
-                  </div>
-              </div>
-        </div>
+
+      <div className="cardDetails" key={character.url}>
+          <img src= {`${imgURL + id}.jpg`} alt="character"/>
+          <div className ="cardInfoDetails">
+              <h1 id="" ><b> {character.name}</b></h1>
+              <h2><b>Height: {character.height}</b></h2>
+              <h2><b>Mass: {character.mass}</b></h2>
+              <h2><b>Birth Year: {character.birth_year}</b></h2>
+
+
+          </div>
+      </div>
+
   )
   
 }
