@@ -1,8 +1,8 @@
 .pagination {
     width: 15%;
-    margin: 0 auto;
-    position: relative;
     padding: 20px;
+    display: flex;
+    justify-content: space-around;
 }
 
 button {
@@ -14,19 +14,14 @@ button {
 }
 
 .pagination #next {
-    position: absolute;
-    width: 100px;
-    right: 0px;
+    min-width: 110px;
+
 }
 
 .pagination #current {
-    position: absolute;
     width: 50px;
-    left: 138px;
 }
 
 .pagination #prev {
     width: 100px;
-    position: absolute;
-    left: 0px;
 }
