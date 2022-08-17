@@ -1,9 +1,6 @@
 import React from 'react'
 import './Pagination.css'
 
-function getCurrentPageNumber(url) {
-  return  url.split("=")[1];
-}
 
 export default function Pagination({gotoNextPage, gotoPrevPage, currentPageNumber, total})  {
 

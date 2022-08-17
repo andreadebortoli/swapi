@@ -4,8 +4,8 @@
     background-color: white;
     border-radius: 10px;
     width: 40%;
-    margin: 50px;
-
+    margin: 0 auto;
+    margin-top: 20px;
   }
   
   .cardDetails img {
