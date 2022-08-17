@@ -15,6 +15,7 @@ function App() {
         <header className="App-header">
           <h1> Star Wars Characters </h1>
         </header>
+        
           <Routes >
             <Route path="/" element={<CharactersList  />}></Route> 
             <Route path="/Character/:id" element={<CharacterDetails  />}></Route> 

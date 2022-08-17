@@ -92,10 +92,13 @@ export default function CharactersList (props){
 
   if(loading) return <Loading />
 
+
     return (
       <>
-      <BackToHome />
-      
+      {currentPageNumber != 1 ?  (<BackToHome />): null}
+
+    
+
       <Pagination
         gotoNextPage={nextPageUrl ? gotoNextPage : null}
         gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
